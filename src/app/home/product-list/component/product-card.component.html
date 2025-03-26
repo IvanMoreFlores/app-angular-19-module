@@ -1,0 +1,11 @@
+<div class="card shadow-sm">
+    <img class="card-img-top" [src]="product.thumbnail" [alt]="product.title">
+    <div class="card-body">
+        <h2 class="card-title">{{product.title}}</h2>
+        <p class="card-text">{{product.description}}</p>
+        <p class="text-primary fw-bold">Precio: ${{product.price}} <span
+                class="text-danger">(-{{product.discountPercentage}}%)</span></p>
+        <p class="text-warning fw-bold" [ngClass]="{'text-danger': product.stock < 10}">Stock: {{product.stock}}</p>
+        <button class="btn btn-primary w-100" (click)="onClickBuy()">Comprar ahora</button>
+    </div>
+</div>
