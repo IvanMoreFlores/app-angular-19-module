@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { HomeService } from '../home.service';
-
-export interface IProduct {}
-
+import { IProduct } from './component/pruduct-interface';
 @Component({
   selector: 'app-product-list',
   templateUrl: './list.component.html',
@@ -11,7 +9,8 @@ export interface IProduct {}
 })
 export class ProductListComponent {
   constructor(private productService: HomeService) {}
-  products: any;
+  products: IProduct[] = [];
+
   async ngOnInit() {
     try {
       const result = await this.productService.getProducts();
@@ -20,8 +19,7 @@ export class ProductListComponent {
     } catch (error) {}
   }
 
-  onClickBuy(product: IProduct): void {
+  onClickBuy(product: IProduct) {
     console.log('Producto comprado en el padre:', product);
-    //Al ngRx
   }
 }

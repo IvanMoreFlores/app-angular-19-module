@@ -18,11 +18,5 @@
                 <p class="text-danger text-center mt-2" *ngIf="errorMessage">{{errorMessage}}</p>
             </form>
         </div>
-        <div>
-            <h4>Current Count: {{ count | async }}</h4>
-            <button (click)="incrementCount()">Incrementar</button>
-            <button (click)="decrementCount()">Decrementar</button>
-            <button (click)="resetCount()">Resetear</button>
-        </div>
     </div>
 </main>

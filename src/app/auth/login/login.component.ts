@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { increment, decrement, reset } from '../../store/counter.actions';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,15 +12,8 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
   errorMessage: string = '';
-  count: Observable<number>;
 
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private store: Store<{ count: number }>
-  ) {
-    this.count = store.select('count');
-  }
+  constructor(private router: Router, private authService: AuthService) {}
 
   async onSubmitLogin() {
     try {
@@ -39,17 +29,5 @@ export class LoginComponent {
       this.username = '';
       this.password = '';
     }
-  }
-
-  incrementCount() {
-    this.store.dispatch(increment());
-  }
-
-  decrementCount() {
-    this.store.dispatch(decrement());
-  }
-
-  resetCount() {
-    this.store.dispatch(reset());
   }
 }

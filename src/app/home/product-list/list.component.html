@@ -1,14 +1,8 @@
 <app-navbar></app-navbar>
-<main class="container mt-4 container-body">
+<main class="container mt-4">
     <div class="row g-4">
         <div class="col-md-4 col-sm-6 col-12" *ngFor="let item of products">
             <app-product-card [product]="item" (buyProduct)="onClickBuy($event)" />
         </div>
     </div>
 </main>
-
-<!-- //header
-//body
-//main - > una pagina entera y que el CEO se mas eficiente
-//section #Product #Footer - > una pagina
-//div -> componente - seccion de codigo -->

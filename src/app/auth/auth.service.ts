@@ -11,7 +11,11 @@ export class AuthService {
 
     async login(username: string, password: string) {
         const response = await axios.post(`${this.apiUrl}/auth/login`, { username, password });
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('accessToken', response.data.accessToken);
+        localStorage.setItem('refreshToken', response.data.refreshToken);
+        localStorage.setItem('firstName', response.data.firstName);
+        localStorage.setItem('lastName', response.data.lastName);
+        localStorage.setItem('email', response.data.email);
         return response;
     }
 }
