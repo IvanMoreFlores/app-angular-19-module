@@ -1,14 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { ProductListComponent } from './home/product-list/list.component';
-import { CartShoppingComponent } from './home/cart-shopping/cart-shopping.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { ProductListComponent } from './pages/home/product-list/list.component';
+import { CartShoppingComponent } from './pages/home/cart-shopping/cart-shopping.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'list-products', component: ProductListComponent },
-  { path: 'cart-shopping', component: CartShoppingComponent },
+  {
+    path: 'list-products',
+    component: ProductListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'cart-shopping',
+    component: CartShoppingComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

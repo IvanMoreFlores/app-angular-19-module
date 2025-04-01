@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IProduct } from './pruduct-interface';
-import { addProduct } from '../../../store/product/product.actions';
+import { addProduct } from '../../../../store/product/product.actions';
 import { Store } from '@ngrx/store';
 
 @Component({

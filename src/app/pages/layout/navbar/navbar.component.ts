@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IProduct } from '../../home/product-list/component/pruduct-interface';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,6 +15,7 @@ export class NavbarComponent {
 
   constructor(
     private router: Router,
+    private authService: AuthService, // replace with actual service for logout
     private store: Store<{ products: IProduct[] }>
   ) {
     this.productCount$ = this.store.select((state) => state.products.length);
@@ -21,5 +23,10 @@ export class NavbarComponent {
 
   onClickCart() {
     this.router.navigate(['/cart-shopping']);
+  }
+
+  onClickLogout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

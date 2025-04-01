@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IProduct } from '../product-list/component/pruduct-interface';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { deleteProduct } from '../../../store/product/product.actions';
 
 @Component({
   selector: 'app-cart-shopping',
@@ -11,9 +12,19 @@ import { Observable } from 'rxjs';
 })
 export class CartShoppingComponent {
   products$: Observable<IProduct[]>;
+  total$: Observable<number>;
 
   constructor(private store: Store<{ products: IProduct[] }>) {
     this.products$ = this.store.select((state) => state.products);
-    console.log(this.products$);
+    this.total$ = this.products$.pipe(
+      map((products) =>
+        products.reduce((acc, product) => acc + product.price, 0)
+      )
+    );
+  }
+
+  onClickRemove(id: number) {
+    console.log('Producto eliminado:', id);
+    this.store.dispatch(deleteProduct({ id: id }));
   }
 }

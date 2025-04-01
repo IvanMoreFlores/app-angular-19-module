@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { addProduct, deleteProduct } from './product.actions';
-import { IProduct } from '../../home/product-list/component/pruduct-interface';
+import { IProduct } from '../../pages/home/product-list/component/pruduct-interface';
 
 export const initialState: IProduct[] = [];
 

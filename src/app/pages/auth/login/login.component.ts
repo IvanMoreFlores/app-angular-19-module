@@ -15,6 +15,13 @@ export class LoginComponent {
 
   constructor(private router: Router, private authService: AuthService) {}
 
+  ngOnInit(): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/list-products']);
+      return;
+    }
+  }
+
   async onSubmitLogin() {
     try {
       const result = await this.authService.login(this.username, this.password);
