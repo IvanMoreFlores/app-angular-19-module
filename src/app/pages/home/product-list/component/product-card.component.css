@@ -11,3 +11,10 @@
   height: 200px;
   object-fit: cover;
 }
+
+.counter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}

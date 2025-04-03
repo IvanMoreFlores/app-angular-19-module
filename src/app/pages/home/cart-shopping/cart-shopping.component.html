@@ -18,7 +18,7 @@
                 <td><img [src]="item.thumbnail" class="img-fluid" alt="{{item.title}}"></td>
                 <!-- <td><img src="img-loader.avif" class="img-fluid" alt="{{item.title}}"></td> -->
                 <td>{{item.price | currency}}</td>
-                <td>1</td>
+                <td>{{item.count}}</td>
                 <td>{{(item.price* 1) | currency }}</td>
                 <td>
                     <button class="bg-danger text-white" (click)="onClickRemove(item.id)">Quitar</button>

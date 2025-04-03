@@ -21,6 +21,7 @@ export interface IProduct {
     meta: Meta
     images: string[]
     thumbnail: string
+    count?: number
   }
   
   export interface Dimensions {

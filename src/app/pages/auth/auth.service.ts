@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://dummyjson.com';
+  private readonly apiUrl = 'https://dummyjson.com';
 
   async login(username: string, password: string) {
     const response = await axios.post(`${this.apiUrl}/auth/login`, {

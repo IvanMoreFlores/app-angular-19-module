@@ -9,3 +9,13 @@ export const deleteProduct = createAction(
   '[Product] Delete Product',
   props<{ id: number }>()
 );
+
+export const increaseProduct = createAction(
+  '[Product] Increase Product',
+  props<{ id: number }>()
+);
+
+export const decreaseProduct = createAction(
+  '[Product] Decrease Product',
+  props<{ id: number }>()
+);
