@@ -1,8 +1,36 @@
 <app-navbar></app-navbar>
 <main class="container mt-4">
+    <div class="div-header">
+        <div class="mb-3">
+            <button (click)="openModalProduct()" class="btn btn-primary">Agregar producto</button>
+        </div>
+        <div class="mb-3">
+            <p class="fs-3">Buscar por </p>
+            <input (input)="onChangeInputSearch($event)" type="text" class="form-control"
+                placeholder="Buscar producto...">
+        </div>
+        <div>
+            <p class="fs-3">Categoria </p>
+            <select class="form-control" (change)="onSelectCategory($event)">
+                <option selected>.: Todos :.</option>
+                <option *ngFor="let item of categories" [value]="item.slug">{{item.name}}</option>
+            </select>
+        </div>
+    </div>
     <div class="row g-4">
         <div class="col-md-4 col-sm-6 col-12" *ngFor="let item of products">
             <app-product-card [product]="item" (buyProduct)="onClickBuy($event)" />
+        </div>
+    </div>
+    <div class="modal fade" id="modalProduct" tabindex="-1" aria-labelledby="modalProduct" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Agregar producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body"></div>
+            </div>
         </div>
     </div>
 </main>

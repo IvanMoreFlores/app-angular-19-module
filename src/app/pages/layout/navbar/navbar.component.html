@@ -7,20 +7,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="position-relative navbar-nav me-auto mb-2 mb-lg-0">
-                <li (click)="onClickCart()" class="nav-item">
+                <button (click)="onClickCart()" class="nav-item btn btn-link p-0" tabindex="0">
                     <span>
                         <i class="bi bi-cart-fill text-white fs-4"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {{productCount$ | async}}
                         </span>
                     </span>
-                </li>
+                </button>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-                <button (click)="onClickLogout()" class="btn btn-danger" type="submit">Cerrar sessión</button>
-            </form>
+            <div class="d-flex flex-column align-content-center justify-content-center">
+                <p class="text-white fw-bold">{{name}}</p>
+            </div>
+            <button (click)="onClickLogout()" class="btn btn-danger" type="submit">Cerrar sessión</button>
         </div>
     </div>
 </nav>

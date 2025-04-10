@@ -16,4 +16,22 @@ export class HomeService {
     const response = await axios.get(`${this.apiUrl}/products/${productId}`);
     return response.data;
   }
+  async getSearchProduct(word: string) {
+    const response = await axios.get(
+      `${this.apiUrl}/products/search?q=${word}`
+    );
+    return response.data;
+  }
+
+  async getCategories() {
+    const response = await axios.get(`${this.apiUrl}/products/categories`);
+    return response.data;
+  }
+  
+  async getSearchProductByCategories(categories: string) {
+    const response = await axios.get(
+      `${this.apiUrl}/products/category/${categories}`
+    );
+    return response.data;
+  }
 }

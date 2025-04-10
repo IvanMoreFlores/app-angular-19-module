@@ -36,9 +36,13 @@ export class CardProductComponent {
     });
   }
   onClickBuy(): void {
-    console.log('Producto comprado:', this.product);
+    console.log('Producto comprado en el hijo:', this.product);
     this.store.dispatch(addProduct({ product: this.product }));
   }
+
+  // onClickBuy() {
+  //   return this.buyProduct.emit(this.product);
+  // }
 
   increaseCount(): void {
     this.store.dispatch(increaseProduct({ id: this.product.id }));
