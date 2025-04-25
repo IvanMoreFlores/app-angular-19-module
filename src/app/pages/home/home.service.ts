@@ -27,10 +27,33 @@ export class HomeService {
     const response = await axios.get(`${this.apiUrl}/products/categories`);
     return response.data;
   }
-  
+
   async getSearchProductByCategories(categories: string) {
     const response = await axios.get(
       `${this.apiUrl}/products/category/${categories}`
+    );
+    return response.data;
+  }
+
+  async postProduct(newProduct: any) {
+    const response = await axios.post(
+      `${this.apiUrl}/products/add`,
+      newProduct
+    );
+    return response.data;
+  }
+
+  async putProduct(productId: number, newProduct: any) {
+    const response = await axios.put(
+      `${this.apiUrl}/products/${productId}`,
+      newProduct
+    );
+    return response.data;
+  }
+
+  async deleteProduct(productId: number) {
+    const response = await axios.delete(
+      `${this.apiUrl}/products/${productId}`
     );
     return response.data;
   }

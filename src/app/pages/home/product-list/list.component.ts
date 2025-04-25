@@ -18,6 +18,14 @@ export class ProductListComponent {
   products: IProduct[] = [];
   categories: ICategories[] = [];
   statusModal: boolean = false;
+  tbnText: string = 'Agregar producto';
+  newProduct = {
+    id: 0,
+    title: '',
+    description: '',
+    price: 0,
+    stock: 0,
+  };
 
   async ngOnInit() {
     try {
@@ -68,10 +76,101 @@ export class ProductListComponent {
   }
 
   openModalProduct() {
+    this.tbnText = 'Agregar producto';
     const modal = document.getElementById('modalProduct');
     if (modal) {
       const bsModal = new (window as any).bootstrap.Modal(modal);
       bsModal.show();
     }
+  }
+
+  async onClickUpdateProduct(event: Event) {
+    event.preventDefault();
+    console.log(this.newProduct);
+    try {
+      const result = await this.productService.putProduct(
+        this.newProduct.id,
+        JSON.stringify(this.newProduct)
+      );
+      console.log(result);
+      if (result) {
+        console.log('Producto actualizado correctamente');
+        this.getAllProducts();
+        this.newProduct = {
+          id: 0,
+          title: '',
+          description: '',
+          price: 0,
+          stock: 0,
+        };
+        const modal = document.getElementById('modalProduct');
+        if (modal) {
+          const bsModal = new (window as any).bootstrap.Modal(modal);
+          bsModal.hide();
+        }
+      } else {
+        alert('Error al actualizar el producto');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  openModalEditProduct(product: IProduct) {
+    this.tbnText = 'Editar producto';
+    const modal = document.getElementById('modalProduct');
+    if (modal) {
+      const bsModal = new (window as any).bootstrap.Modal(modal);
+      bsModal.show();
+    }
+    this.newProduct = {
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      stock: product.stock,
+    };
+  }
+
+  onClick(event: Event) {
+    event.preventDefault();
+    if (this.newProduct.id === 0) {
+      this.onClickAddProduct(event);
+    } else {
+      this.onClickUpdateProduct(event);
+    }
+  }
+
+  async onClickAddProduct(event: Event) {
+    event.preventDefault();
+    console.log(this.newProduct);
+    try {
+      const result = await this.productService.postProduct(this.newProduct);
+      console.log(result);
+      if (result) {
+        console.log('Producto agregado correctamente');
+        this.products.push(result);
+        this.newProduct = {
+          id: 0,
+          title: '',
+          description: '',
+          price: 0,
+          stock: 0,
+        };
+        const modal = document.getElementById('modalProduct');
+        if (modal) {
+          const bsModal = new (window as any).bootstrap.Modal(modal);
+          bsModal.hide();
+        }
+      } else {
+        alert('Error al agregar el producto');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  onDelete(product: IProduct) {
+    return this.productService.deleteProduct(product.id);
   }
 }

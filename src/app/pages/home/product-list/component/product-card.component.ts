@@ -17,6 +17,8 @@ import { Observable } from 'rxjs';
 export class CardProductComponent {
   @Input() product!: IProduct;
   @Output() buyProduct = new EventEmitter<IProduct>();
+  @Output() editProduct = new EventEmitter<IProduct>();
+  @Output() deleteProduct = new EventEmitter<IProduct>();
   product$!: Observable<IProduct | undefined>;
   //Pruct$ -> Prodcuto del store redux - si(IProduct) No(undefined)
 
@@ -38,6 +40,14 @@ export class CardProductComponent {
   onClickBuy(): void {
     console.log('Producto comprado en el hijo:', this.product);
     this.store.dispatch(addProduct({ product: this.product }));
+  }
+
+  onUpdate(product: IProduct) {
+    return this.editProduct.emit(product);
+  }
+
+  onDelete(product: IProduct) {
+    return this.deleteProduct.emit(product);
   }
 
   // onClickBuy() {
