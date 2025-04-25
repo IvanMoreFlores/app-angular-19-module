@@ -4,4 +4,5 @@ export default {
   testMatch: ['**/+(*.)+(spec).+(ts)'],
   moduleFileExtensions: ['ts', 'html', 'js', 'json', 'mjs'],
   testEnvironment: 'jsdom',
+  coverageDirectory: 'coverage',
 };

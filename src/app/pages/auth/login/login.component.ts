@@ -13,12 +13,14 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private readonly router: Router,
+    private readonly authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     if (this.authService.isAuthenticated()) {
       this.router.navigate(['/list-products']);
-      return;
     }
   }
 
@@ -32,6 +34,7 @@ export class LoginComponent {
       console.log(result.status);
     } catch (error) {
       this.errorMessage = 'Credenciales incorrectas';
+      console.log(error);
     } finally {
       this.username = '';
       this.password = '';

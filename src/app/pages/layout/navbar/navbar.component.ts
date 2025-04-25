@@ -12,11 +12,11 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class NavbarComponent {
   productCount$: Observable<number>;
-  name: String;
+  name: string;
   constructor(
-    private router: Router,
-    private authService: AuthService, // replace with actual service for logout
-    private store: Store<{ products: IProduct[] }>
+    private readonly router: Router,
+    private readonly authService: AuthService, // replace with actual service for logout
+    private readonly store: Store<{ products: IProduct[] }>
   ) {
     this.productCount$ = this.store.select((state) => state.products.length);
     this.name =
