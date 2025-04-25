@@ -17,6 +17,7 @@ import { NavbarComponent } from './pages/layout/navbar/navbar.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
 import { CartShoppingComponent } from './pages/home/cart-shopping/cart-shopping.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CartShoppingComponent } from './pages/home/cart-shopping/cart-shopping.
     CardProductComponent,
     NavbarComponent,
     CartShoppingComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,
