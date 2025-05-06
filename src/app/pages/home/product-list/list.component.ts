@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { HomeService } from '../home.service';
 import { IProduct } from './component/pruduct-interface';
+import { loadProducts } from '../../../store/products/products.actions';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 interface ICategories {
   slug: string;
@@ -14,7 +17,13 @@ interface ICategories {
   standalone: false,
 })
 export class ProductListComponent {
-  constructor(private productService: HomeService) {}
+  products$: Observable<IProduct[]> = this.store.select(
+    (state) => state.products.products
+  );
+  constructor(
+    private readonly productService: HomeService,
+    private readonly store: Store<{ products: { products: IProduct[] } }>
+  ) {}
   products: IProduct[] = [];
   categories: ICategories[] = [];
   statusModal: boolean = false;
@@ -29,6 +38,7 @@ export class ProductListComponent {
 
   async ngOnInit() {
     try {
+      this.store.dispatch(loadProducts());
       const result = await this.productService.getProducts();
       const data = await this.productService.getCategories();
       this.categories = data;

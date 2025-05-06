@@ -3,10 +3,11 @@ import { IProduct } from './pruduct-interface';
 import {
   addProduct,
   decreaseProduct,
+  deleteProduct,
   increaseProduct,
-} from '../../../../store/product/product.actions';
+} from '../../../../store/cart/product.actions';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 
 @Component({
   selector: 'app-product-card',
@@ -59,6 +60,16 @@ export class CardProductComponent {
   }
 
   decreaseCount(): void {
-    this.store.dispatch(decreaseProduct({ id: this.product.id }));
+    // this.product
+    this.product$.pipe(take(1)).subscribe((product) => {
+      console.log('Producto en el store:', product);
+      if (!product) return;
+      if (product && (product.count ?? 0) > 1) {
+        this.store.dispatch(decreaseProduct({ id: this.product.id }));
+      }
+      if (product && product.count === 1) {
+        this.store.dispatch(deleteProduct({ id: this.product.id }));
+      }
+    });
   }
 }

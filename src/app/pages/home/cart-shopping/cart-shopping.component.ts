@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IProduct } from '../product-list/component/pruduct-interface';
 import { map, Observable } from 'rxjs';
-import { deleteProduct } from '../../../store/product/product.actions';
+import { deleteProduct } from '../../../store/cart/product.actions';
 
 @Component({
   selector: 'app-cart-shopping',
